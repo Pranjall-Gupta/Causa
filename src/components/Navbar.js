@@ -36,7 +36,7 @@ export class NavbarComponent extends React.Component {
       <Navbar bg="dark" variant="dark" expand="lg">
         <Navbar.Brand href="/">
           <img src={logo} className="navbar-logo" alt="logo" />
-          OpenRCA
+          CAUSA
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">

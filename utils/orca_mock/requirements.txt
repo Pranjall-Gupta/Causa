@@ -1,3 +1,0 @@
-flask                       # BSD 3-Clause License
-flask-restx                 # BSD 3-Clause License
-flask_cors                  # MIT

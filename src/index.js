@@ -1,3 +1,4 @@
+import './mock';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Route, BrowserRouter as Router, Redirect } from 'react-router-dom';
