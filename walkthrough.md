@@ -118,3 +118,18 @@ Returns ranked lists of root causes explaining the alert.
   }
 ]
 ```
+
+---
+
+## 5. Mock Mode Toggle & Runtime Configuration
+
+### Dynamic Mock Interceptor Control
+- **Previous Behavior**: The application previously imported `src/mock.js` unconditionally at startup in `index.js`, permanently hijacking all HTTP requests to `/v1/alerts`, `/v1/graph`, and `/v1/rca` with hardcoded mock data regardless of backend availability.
+- **Current Behavior**: Mocking is now controlled dynamically via the `REACT_APP_USE_MOCK` environment variable in `.env`:
+  - `REACT_APP_USE_MOCK=true`: `src/mock.js` is loaded via `require('./mock')`, intercepting requests to `/v1/alerts`, `/v1/graph`, and `/v1/rca`.
+  - `REACT_APP_USE_MOCK=false` (or unset): Mocking is disabled, allowing real HTTP requests to be routed directly to the Spring Boot backend configured via `REACT_APP_BACKEND_HOST`.
+- **Developer Reference (`.env.example`)**: A `.env.example` file is included to document the `REACT_APP_USE_MOCK` flag and backend configuration for other developers.
+
+### ESLint `import/first` Resolution
+- **Rule Requirement**: Create React App enforces ESLint's `import/first` rule, requiring all static ES module `import` statements to be placed at the very top of the module file before any executable statements or conditional logic.
+- **Implementation**: In `index.js`, all static `import ... from ...` statements are placed at the top of the file in their original order, followed immediately by the conditional `if (process.env.REACT_APP_USE_MOCK === 'true') { require('./mock'); }` block prior to any application rendering logic (`ReactDOM.render`).
