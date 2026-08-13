@@ -3,4 +3,3 @@
 .env
 .env.*
 !.env.example
-.env.local" | Out-File -Encoding utf8 .gitignore.env
