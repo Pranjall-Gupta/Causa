@@ -88,3 +88,15 @@ CAUSA is actively under development. The following capabilities are planned or i
 - **Persistent Production Storage**: Extending JPA platform support beyond H2 to production-grade relational (PostgreSQL / TimescaleDB) or time-series databases.
 - **ML-Assisted RCA Scoring**: Enhancing the current heuristic BFS scoring model with historical incident pattern matching and log anomaly correlation.
 - **Cloud-Native Deployment**: Packaging container definitions, Kubernetes Helm charts, and infrastructure-as-code manifests for cluster deployments.
+
+---
+
+## TODO - Pending Frontend Work
+
+The following items are planned for the frontend team to implement:
+
+1. **Self-Service Project Creation Page**: A UI page for creating a new project via the existing backend endpoint `POST /v1/admin/projects`. Displays the generated API key along with copy-paste setup instructions (Maven dependency snippet + `application.properties` snippet) for the Causa Java plugin, accompanied by a live status indicator polling `/v1/graph` until the user's first trace arrives.
+2. **Config-Snippet Generator**: A smaller helper tool where a user pastes their existing `pom.xml` and receives it back with the Causa plugin dependency automatically merged in.
+
+> [!NOTE]
+> Full specifications for both features are documented in `PROJECT_STATUS.md` in the `Causa-backend` repository under **Phase 4, Step 4**.
