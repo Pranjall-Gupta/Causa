@@ -1,4 +1,3 @@
-import './mock';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Route, BrowserRouter as Router, Redirect } from 'react-router-dom';
@@ -10,6 +9,10 @@ import '@fortawesome/fontawesome-free/css/all.min.css';
 import 'react-bootstrap-table-next/dist/react-bootstrap-table2.min.css';
 import 'react-bootstrap-table2-paginator/dist/react-bootstrap-table2-paginator.min.css';
 import 'react-bootstrap-table2-filter/dist/react-bootstrap-table2-filter.min.css';
+
+if (process.env.REACT_APP_USE_MOCK === 'true') {
+  require('./mock');
+}
 
 const router = (
   <div className="wrapper">
