@@ -4,6 +4,19 @@ This is the standalone React frontend for **CAUSA**, an architecture-aware failu
 
 ---
 
+## Project Repositories
+
+CAUSA is split across four repos. This one (frontend) is the entry point — start here.
+
+| Repo | What it is |
+|---|---|
+| **Causa** (this repo) | React frontend — dashboards, topology graph, RCA views |
+| [Causa-backend](https://github.com/Pranjall-Gupta/Causa-backend) | Spring Boot backend — OTLP ingestion, dynamic topology, anomaly detection, heuristic RCA scoring |
+| [Causa-test-services](https://github.com/Pranjall-Gupta/Causa-test-services) | Sample microservices used to generate real trace/log/metric data for testing |
+| [Causa-plugin-java](https://github.com/soham-kolhe/Causa-plugin-java) | Java plugin developers add to their own services to emit data to CAUSA |
+
+---
+
 ## Codebase Map
 
 ### Folder Structure
@@ -59,9 +72,9 @@ The frontend intercepts all network calls transparently using `axios.interceptor
 
 ---
 
-## Backend API Specification (Java/Spring Boot Target)
+## Backend API Specification (Java/Spring Boot)
 
-Your future Spring Boot backend must implement the following three endpoints:
+`Causa-backend` implements the following three endpoints, consumed by this frontend:
 
 ### 1. Retrieve Incidents
 - **Endpoint**: `GET /v1/alerts`
