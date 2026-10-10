@@ -4,6 +4,8 @@ import BootstrapTable from 'react-bootstrap-table-next';
 import Loader from 'react-loader-spinner';
 import paginationFactory from 'react-bootstrap-table2-paginator';
 import filterFactory, { textFilter, selectFilter, dateFilter } from 'react-bootstrap-table2-filter';
+import { Link } from 'react-router-dom';
+import { Button } from 'react-bootstrap';
 
 import './Alerts.scss';
 import 'assets/Table.scss';
@@ -60,11 +62,6 @@ export class Alerts extends React.Component {
     );
   }
 
-  originFormatter(cell) {
-    return (
-      <span> {cell.charAt(0).toUpperCase() + cell.slice(1)} </span>
-    );
-  }
 
   severitySortFunc(a, b, order, dataFiled) {
     const valuesOrder = ['critical', 'warning', 'info'];
@@ -78,6 +75,17 @@ export class Alerts extends React.Component {
   timestampFormatter(cell) {
     return (
       <span> {cell.toUTCString()} </span>
+    );
+  }
+
+  actionFormatter(cell, row) {
+    const timestamp = Math.floor(new Date(row.updated_at).getTime() / 1000);
+    return (
+      <Link to={`/rca?source=${row.id}&time_point=${timestamp}`}>
+        <Button size="xs" variant="outline-warning" style={{ fontSize: '0.75rem', padding: '2px 8px', whiteSpace: 'nowrap' }}>
+          <i className="fas fa-search mr-1" /> Analyze
+        </Button>
+      </Link>
     );
   }
 
@@ -102,14 +110,7 @@ export class Alerts extends React.Component {
       formatter: this.timestampFormatter,
       sort: true,
       filter: dateFilter()
-    }, {
-      dataField: 'origin',
-      text: 'Origin',
-      formatter: this.originFormatter,
-      sort: true,
-      filter: selectFilter({
-        options: this.getOptions('origin')
-      })
+
     }, {
       dataField: 'name',
       text: 'Name',
@@ -120,6 +121,11 @@ export class Alerts extends React.Component {
       text: 'Message',
       sort: true,
       filter: textFilter()
+    }, {
+      dataField: 'actions',
+      text: 'Action',
+      formatter: this.actionFormatter,
+      isDummyField: true
     }];
 
     const defaultSort = [{

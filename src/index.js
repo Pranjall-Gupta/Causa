@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Route, BrowserRouter as Router, Redirect } from 'react-router-dom';
-import { Navbar, Graph, Alerts, RCA } from './components';
+import { Navbar, Graph, Alerts, RCA, Onboard } from './components';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './assets/ui.css';
@@ -19,10 +19,11 @@ const router = (
     <Navbar />
     <div className="main-panel">
       <Router>
-        <Route exact path="/"> <Redirect to="/graph"/> </Route>
+        <Route exact path="/"> <Redirect to="/onboard"/> </Route>
         <Route path="/graph" component={Graph} />
         <Route path="/alerts" component={Alerts} />
         <Route path="/rca" component={RCA} />
+        <Route path="/onboard" component={Onboard} />
       </Router>
     </div>
   </div>

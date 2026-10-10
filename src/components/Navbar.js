@@ -46,6 +46,7 @@ export class NavbarComponent extends React.Component {
                 Alerts
               <Badge className="alertBadge" variant="danger" pill>{this.state.alertCount ? this.state.alertCount : null}</Badge>
             </Nav.Link>
+            <Nav.Link href="/onboard">Onboard</Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Navbar>
