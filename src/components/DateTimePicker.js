@@ -4,7 +4,6 @@ import Select from 'react-select';
 import { Navbar } from 'react-bootstrap';
 
 import 'react-datepicker/dist/react-datepicker.css';
-
 import './DateTimePicker.scss';
 
 import { InterfaceVisibilityControls } from './InterfaceVisibilityControls';
@@ -13,34 +12,17 @@ export class DateTimePicker extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      date: new Date(),
-      namespaceOptions: this.props.namespaceOptions,
-      objectKindOptions: this.props.objectKindOptions,
-      showLabels: this.props.showLabels
+      date: new Date()
     };
     this.handleDateChange = this.handleDateChange.bind(this);
     this.handleRefresh = this.handleRefresh.bind(this);
-  }
-
-  componentDidUpdate(){
-    this.setState({
-      namespaceOptions: this.props.namespaceOptions,
-      objectKindOptions: this.props.objectKindOptions,
-      showLabels: this.props.showLabels
-    });
-  }
-
-  shouldComponentUpdate(nextProps) {
-    return this.state.namespaceOptions !== nextProps.namespaceOptions ||
-      this.state.objectKindOptions !== nextProps.objectKindOptions ||
-      this.state.showLabels !== nextProps.showLabels;
   }
 
   handleDateChange(date) {
     this.setState({
       date: date
     }, () => {
-      this.props.onSelect(date.getTime()/1000);
+      this.props.onSelect(date.getTime() / 1000);
     });
   }
 
@@ -48,9 +30,11 @@ export class DateTimePicker extends React.Component {
     this.props.onSelect();
   }
 
-  render(){
-    return(
-      <Navbar bg="dark" variant="dark" expand="lg" fixed="bottom" >
+  render() {
+    const { namespaceOptions, objectKindOptions, showLabels } = this.props;
+
+    return (
+      <Navbar bg="dark" variant="dark" expand="lg" fixed="bottom">
         <div className="date-picker-container">
           <span onClick={this.handleRefresh} className="refresh">
             <i className="fas fa-sync-alt fa-lg refresh-icon" />
@@ -59,7 +43,7 @@ export class DateTimePicker extends React.Component {
             className="date-picker"
             selected={this.state.date}
             onChange={this.handleDateChange}
-            dateFormat='dd/MM/yyyy hh:mm a'
+            dateFormat="dd/MM/yyyy hh:mm a"
             showTimeSelect
             timeIntervals={15}
             maxDate={new Date()}
@@ -67,10 +51,10 @@ export class DateTimePicker extends React.Component {
         </div>
         <div className="selector-container" id="namespace-selector-container">
           <Select
-            className='react-select-container'
+            className="react-select-container"
             classNamePrefix="react-select"
             menuPlacement="top"
-            options={this.state.namespaceOptions}
+            options={namespaceOptions}
             placeholder="Select Namespace.."
             onChange={(e) => this.props.handleNamespaceChange(e)}
             isClearable
@@ -78,15 +62,15 @@ export class DateTimePicker extends React.Component {
         </div>
         <div className="selector-container" id="object-selector-container">
           <Select
-            className='react-select-container'
+            className="react-select-container"
             classNamePrefix="react-select"
             menuPlacement="top"
-            options={this.state.objectKindOptions}
+            options={objectKindOptions}
             placeholder="Select Objects.."
             onChange={(e) => this.props.handleKindChange(e)}
             isMulti
-            defaultValue = {this.props.defaultKinds}
-            theme={theme => ({
+            defaultValue={this.props.defaultKinds}
+            theme={(theme) => ({
               ...theme,
               colors: {
                 ...theme.colors,
@@ -99,7 +83,7 @@ export class DateTimePicker extends React.Component {
           />
         </div>
 
-        <InterfaceVisibilityControls showLabels={this.state.showLabels} toggleNodeLabels={this.props.toggleNodeLabels} />
+        <InterfaceVisibilityControls showLabels={showLabels} toggleNodeLabels={this.props.toggleNodeLabels} />
       </Navbar>
     );
   }

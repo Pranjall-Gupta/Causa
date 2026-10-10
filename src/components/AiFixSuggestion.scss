@@ -1,0 +1,182 @@
+@import "../assets/_variables.scss";
+
+.ai-fix-empty {
+  padding: 1rem;
+  text-align: center;
+  color: $foreground-color-secondary;
+  font-size: 0.85rem;
+}
+
+.ai-fix-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem 1rem;
+  text-align: center;
+  gap: 0.75rem;
+
+  .ai-loading-text {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+
+    strong {
+      color: $foreground-color-primary;
+      font-size: 0.9rem;
+    }
+
+    span {
+      color: $foreground-color-secondary;
+      font-size: 0.78rem;
+    }
+  }
+}
+
+.ai-fix-error {
+  padding: 1rem;
+  background-color: rgba($accent-color-red, 0.1);
+  border: 1px solid rgba($accent-color-red, 0.3);
+  border-radius: 4px;
+  margin: 0.5rem 0;
+  text-align: center;
+
+  .error-msg {
+    color: $accent-color-red;
+    font-size: 0.85rem;
+    margin-bottom: 0.5rem;
+  }
+}
+
+.ai-fix-prompt {
+  padding: 1rem;
+  background-color: $code-background;
+  border: 1px solid $code-border;
+  border-radius: 4px;
+  margin-top: 0.5rem;
+
+  .ai-prompt-desc {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    margin-bottom: 0.75rem;
+
+    .ai-icon {
+      font-size: 1.5rem;
+      color: $accent-color-yellow;
+      margin-top: 0.2rem;
+    }
+
+    strong {
+      color: $foreground-color-primary;
+      font-size: 0.9rem;
+      display: block;
+      margin-bottom: 0.2rem;
+    }
+
+    p {
+      color: $foreground-color-secondary;
+      font-size: 0.8rem;
+      margin: 0;
+      line-height: 1.4;
+    }
+  }
+
+  .btn-generate-ai {
+    width: 100%;
+    font-size: 0.85rem;
+    padding: 0.4rem;
+  }
+}
+
+.ai-fix-result {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+
+  .ai-result-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid $code-border;
+
+    .provider-info {
+      font-size: 0.8rem;
+      color: $accent-color-brightblue;
+      font-weight: 600;
+    }
+
+    .confidence-badge {
+      font-size: 0.75rem;
+      padding: 0.3em 0.6em;
+    }
+  }
+
+  .ai-summary-card {
+    background-color: $code-background;
+    border: 1px solid $code-border;
+    border-radius: 4px;
+    padding: 0.75rem;
+
+    .summary-title {
+      color: $accent-color-yellow;
+      font-size: 0.8rem;
+      font-weight: 700;
+      margin-bottom: 0.35rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .summary-text {
+      color: $foreground-color-primary;
+      font-size: 0.82rem;
+      line-height: 1.45;
+      margin: 0;
+    }
+  }
+
+  .ai-remedy-card {
+    background-color: $code-background;
+    border: 1px solid $code-border;
+    border-radius: 4px;
+    padding: 0.75rem;
+
+    .remedy-title {
+      color: $accent-color-green;
+      font-size: 0.8rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .remedy-steps {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+
+      .remedy-step-line {
+        color: $code-text;
+        font-size: 0.8rem;
+        line-height: 1.45;
+        padding: 0.35rem 0.5rem;
+        background-color: rgba(255, 255, 255, 0.03);
+        border-left: 2px solid $accent-color-green;
+        border-radius: 0 3px 3px 0;
+        font-family: SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      }
+    }
+  }
+
+  .ai-result-footer {
+    display: flex;
+    justify-content: flex-end;
+
+    .btn-refresh-ai {
+      font-size: 0.75rem;
+      padding: 2px 8px;
+    }
+  }
+}
